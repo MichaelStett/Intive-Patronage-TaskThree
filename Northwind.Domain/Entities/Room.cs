@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Northwind.Domain.Entities
 {
     public class Room
     {
-        public int RoomID { get; set; }
-        public int RoomNumber { get; set; }
-        public string RenterName { get; set; }
-        public Calendar Calendar { get; set; } /* BookedTime  SinceTime  UntilTime */
+        public Room()
+        {
+            Calendar = new Collection<Calendar>();
+        }
+
+        public int Id { get; set; }
+        public int Number { get; set; }
+        
+        public ICollection<Calendar> Calendar { get; private set; } /* BookedTime  SinceTime  UntilTime */
     }
 }

@@ -20,9 +20,9 @@ namespace Northwind.WebUI
                 try
                 {
                     var context = scope.ServiceProvider.GetService<NorthwindDbContext>();
-                    context.Database.Migrate();
+                    context.Database.Migrate(); //Tworzy tabele 
 
-                    NorthwindInitializer.Initialize(context);
+                   // NorthwindInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {

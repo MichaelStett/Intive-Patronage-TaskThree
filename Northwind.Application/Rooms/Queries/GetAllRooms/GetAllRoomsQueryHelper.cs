@@ -14,9 +14,15 @@ namespace Northwind.Application.Rooms.Queries.GetAllRooms
         private readonly NorthwindDbContext _context;
         private readonly IMapper _mapper;
 
+        public GetAllRoomsQueryHelper(NorthwindDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
         public async Task<RoomsListViewModel> Handle(GetAllRoomsQuery request, CancellationToken cancellationToken)
         {
-            var rooms = await _context.Rooms.OrderBy(p => p.RoomNumber).ToListAsync(cancellationToken);
+            var rooms = await _context.Rooms.OrderBy(p => p.Id).ToListAsync(cancellationToken);
 
             var model = new RoomsListViewModel
             {

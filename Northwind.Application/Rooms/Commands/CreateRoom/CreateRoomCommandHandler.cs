@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using MediatR;
 using Northwind.Persistence;
+using Northwind.Application.Notification;
+using Northwind.Domain.Entities;
+using Northwind.Application.Exceptions;
 
 namespace Northwind.Application.Rooms.Commands.CreateRoom
 {
@@ -16,20 +19,30 @@ namespace Northwind.Application.Rooms.Commands.CreateRoom
 
         public async Task<int> Handle(CreateRoomCommand request, CancellationToken cancellationToken)
         {
-            var entity = new Domain.Entities.Room
+            var check = _context.Rooms.FindAsync(request.RoomID);
+            if (check != null){
+                throw new ExistAlreadyException(
+                    nameof(Room), 
+                    request.RoomID, 
+                    "Already in database!");
+            }
+
+            var entity = new Room
             {
-                RoomID = request.RoomID,
-                RoomNumber = request.RoomNumber,
-                RenterName = request.RenterName
-            };
+                Id = request.RoomID,
+                Number = request.RoomNumber       
+            };            
 
-
-            
             _context.Rooms.Add(entity);
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return entity.RoomID;
+            //Mail
+            string subject = "Get Command Used";
+            string body = "Created new room";
+            Mail.SendMail(subject, body);
+
+            return entity.Id;
         }
     }
 }

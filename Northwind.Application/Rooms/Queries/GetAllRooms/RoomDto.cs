@@ -1,12 +1,25 @@
-﻿using Northwind.Domain.Entities;
+﻿using Northwind.Application.Interfaces.Mapping;
+using Northwind.Domain.Entities;
+using AutoMapper;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Northwind.Application.Rooms.Queries.GetAllRooms
 {
-    public class RoomDto
+    public class RoomDto : IHaveCustomMapping
     {
-        public int RoomID { get; set; }
-        public int RoomNumber { get; set; }
-        public string RenterName { get; set; }
-        public Calendar Calendar { get; set; }
+        public RoomDto()
+        {
+            Calendar = new Collection<Calendar>();
+        }
+
+        public int Id { get; set; }
+        public int Number { get; set; }
+        public ICollection<Calendar> Calendar { get; private set; }
+
+        public void CreateMappings(Profile configuration)
+        {
+            configuration.CreateMap<Room, RoomDto>();
+        }
     }
 }

@@ -12,21 +12,21 @@ namespace Northwind.WebUI.Controllers
 {
     public class RoomController : BaseController
     {
-        // GET: api/products
+        // GET: api/rooms
         [HttpGet]
         public async Task<ActionResult<RoomsListViewModel>> GetAll()
         {
             return Ok(await Mediator.Send(new GetAllRoomsQuery()));
         }
 
-        // GET: api/products/5
+        // GET: api/rooms/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomDetailsViewModel>> Get(int id)
         {
             return Ok(await Mediator.Send(new GetRoomDetailsQuery { RoomID = id }));
         }
 
-        // POST: api/products
+        // POST: api/rooms
         [HttpPost]
         public async Task<ActionResult<int>> Create([FromBody] CreateRoomCommand command)
         {
@@ -35,14 +35,14 @@ namespace Northwind.WebUI.Controllers
             return Ok(RoomID);
         }
 
-        // PUT: api/products/5
+        // PUT: api/rooms/5
         [HttpPut("{id}")]
         public async Task<ActionResult<RoomDto>> Update([FromRoute] int id,[FromBody] UpdateRoomCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
-        // DELETE: api/products/5
+        // DELETE: api/rooms/5
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> Delete(int id)

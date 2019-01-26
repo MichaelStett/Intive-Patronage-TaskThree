@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Northwind.Application.Notification
 {
-    class Mail
+    public class Mail
     {
-        public void SendMail(string subjectS, string bodyS)
+        public static void SendMail(string subjectS, string bodyS)
         {
             var fromAddress = new MailAddress("kappanotifyservice@gmail.com", "Kappa Test");
             var toAddress = new MailAddress("michaltymejczyk@gmail.com", "Michal Tymejczyk");

@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Northwind.Persistence;
 using Northwind.Application.Exceptions;
+using Northwind.Domain.Entities;
+using Northwind.Application.Notification;
 
 namespace Northwind.Application.Rooms.Commands.DeleteRoom
 {
@@ -21,12 +23,17 @@ namespace Northwind.Application.Rooms.Commands.DeleteRoom
 
             if (entity == null)
             {
-                throw new NotFoundException(nameof(Domain.Entities.Room), request.RoomID);
+                throw new NotFoundException(nameof(Room), request.RoomID);
             }
 
             _context.Rooms.Remove(entity);
 
             await _context.SaveChangesAsync(cancellationToken);
+
+            //Mail
+            string subject = "Delete Command Used";
+            string body = $"Deleted room on Id: {request.RoomID}";
+            Mail.SendMail(subject, body);
 
             return Unit.Value;
         }

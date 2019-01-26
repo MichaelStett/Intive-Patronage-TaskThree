@@ -204,25 +204,20 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "roomID": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "roomNumber": {
+          "number": {
             "type": "integer",
             "format": "int32"
-          },
-          "renterName": {
-            "type": "string",
-            "nullable": true
           },
           "calendar": {
+            "type": "array",
             "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/Calendar"
-              }
-            ]
+            "items": {
+              "$ref": "#/components/schemas/Calendar"
+            }
           }
         }
       },
@@ -230,6 +225,10 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "bookedTime": {
             "type": "string",
             "format": "date-time"
@@ -241,6 +240,10 @@
           "untilTime": {
             "type": "string",
             "format": "date-time"
+          },
+          "renterName": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -263,6 +266,14 @@
           "renterName": {
             "type": "string",
             "nullable": true
+          },
+          "calendar": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Calendar"
+              }
+            ]
           }
         }
       },
@@ -281,6 +292,13 @@
           "renterName": {
             "type": "string",
             "nullable": true
+          },
+          "calendar": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Calendar"
+            }
           }
         }
       }

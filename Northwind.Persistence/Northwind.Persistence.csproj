@@ -18,9 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
