@@ -7,15 +7,14 @@ FROM microsoft/dotnet:2.2-sdk AS build
 
 # Restore dotnet before build to allow for caching
 WORKDIR /
-COPY Northwind.Application/Northwind.Application.csproj /Src/Northwind.Application/
-COPY Northwind.Common/Northwind.Common.csproj /Src/Northwind.Common/
-COPY Northwind.Domain/Northwind.Domain.csproj /Src/Northwind.Domain/
-COPY Northwind.Infrastructure/Northwind.Infrastructure.csproj /Src/Northwind.Infrastructure/
-COPY Northwind.Persistence/Northwind.Persistence.csproj /Src/Northwind.Persistence/
-COPY Northwind.WebUI/Northwind.WebUI.csproj /Src/Northwind.WebUI/
+COPY Northwind.Application/ /src/Northwind.Application/
+COPY Northwind.Common/ /src/Northwind.Common/
+COPY Northwind.Domain/ /src/Northwind.Domain/
+COPY Northwind.Infrastructure/ /src/Northwind.Infrastructure/
+COPY Northwind.Persistence/ /src/Northwind.Persistence/
+COPY Northwind.WebUI/ /src/Northwind.WebUI/
 
 RUN dotnet restore /src/Northwind.WebUI/Northwind.WebUI.csproj
-
 RUN dotnet build /src/Northwind.WebUI/Northwind.WebUI.csproj --no-restore -c Release
 RUN dotnet publish /src/Northwind.WebUI/Northwind.WebUI.csproj --no-restore -c Release -o /app
 
