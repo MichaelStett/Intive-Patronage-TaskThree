@@ -8,8 +8,8 @@ namespace Northwind.Persistence
         public NorthwindDbContext(DbContextOptions<NorthwindDbContext> options)
              : base(options) { } 
 
-        public DbSet<Calendar> Calendar { get; set; } //
-        public DbSet<Room> Rooms { get; set; }        //
+        //public DbSet<Calendar> Calendar { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

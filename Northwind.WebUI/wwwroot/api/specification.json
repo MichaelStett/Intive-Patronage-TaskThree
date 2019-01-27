@@ -255,17 +255,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "roomID": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "roomNumber": {
+          "number": {
             "type": "integer",
             "format": "int32"
-          },
-          "renterName": {
-            "type": "string",
-            "nullable": true
           },
           "calendar": {
             "nullable": true,
@@ -281,17 +277,13 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "roomID": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "roomNumber": {
+          "number": {
             "type": "integer",
             "format": "int32"
-          },
-          "renterName": {
-            "type": "string",
-            "nullable": true
           },
           "calendar": {
             "type": "array",

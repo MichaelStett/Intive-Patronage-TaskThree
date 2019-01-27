@@ -12,11 +12,9 @@ namespace Northwind.Application.Rooms.Commands.UpdateRoom
             Calendar = new List<Calendar>();
         }
 
-        public int RoomID { get; set; }
+        public int Id { get; set; }
 
-        public int RoomNumber { get; set; }
-
-        public string RenterName { get; set; }   
+        public int Number { get; set; }
 
         public ICollection<Calendar> Calendar { get; set; }
     }

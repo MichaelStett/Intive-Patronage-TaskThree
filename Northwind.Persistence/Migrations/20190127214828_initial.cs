@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Northwind.Persistence.Migrations
 {
-    public partial class InitialModel : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,23 +30,12 @@ namespace Northwind.Persistence.Migrations
                     SinceTime = table.Column<DateTime>(nullable: false),
                     UntilTime = table.Column<DateTime>(nullable: false),
                     RenterName = table.Column<string>(nullable: true),
-                    RoomId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Calendar", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Calendar_Rooms_RoomId",
-                        column: x => x.RoomId,
-                        principalTable: "Rooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Calendar_RoomId",
-                table: "Calendar",
-                column: "RoomId");
+            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

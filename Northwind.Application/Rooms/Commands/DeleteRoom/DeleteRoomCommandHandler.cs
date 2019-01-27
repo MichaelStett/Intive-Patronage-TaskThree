@@ -19,11 +19,11 @@ namespace Northwind.Application.Rooms.Commands.DeleteRoom
 
         public async Task<Unit> Handle(DeleteRoomCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Rooms.FindAsync(request.RoomID);
+            var entity = await _context.Rooms.FindAsync(request.Id);
 
             if (entity == null)
             {
-                throw new NotFoundException(nameof(Room), request.RoomID);
+                throw new NotFoundException(nameof(Room), request.Id);
             }
 
             _context.Rooms.Remove(entity);
@@ -31,8 +31,8 @@ namespace Northwind.Application.Rooms.Commands.DeleteRoom
             await _context.SaveChangesAsync(cancellationToken);
 
             //Mail
-            string subject = "Delete Command Used";
-            string body = $"Deleted room on Id: {request.RoomID}";
+            var subject = "Delete Command Used";
+            var body = $"Deleted room on Id: {request.Id}";
             Mail.SendMail(subject, body);
 
             return Unit.Value;

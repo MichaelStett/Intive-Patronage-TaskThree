@@ -28,17 +28,13 @@ namespace Northwind.Persistence.Migrations
                     b.Property<DateTime>("BookedTime");
 
                     b.Property<string>("RenterName");
-
-                    b.Property<int?>("RoomId");
-
+                    
                     b.Property<DateTime>("SinceTime");
 
                     b.Property<DateTime>("UntilTime");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
-
+                    
                     b.ToTable("Calendar");
                 });
 
@@ -54,11 +50,10 @@ namespace Northwind.Persistence.Migrations
                 });
 
             modelBuilder.Entity("Northwind.Domain.Entities.Calendar", b =>
-                {
-                    b.HasOne("Northwind.Domain.Entities.Room")
-                        .WithMany("Calendar")
-                        .HasForeignKey("RoomId");
-                });
+            {
+                b.HasOne("Northwind.Domain.Entities.Room")
+                    .WithMany("Calendar");
+            });
 #pragma warning restore 612, 618
         }
     }

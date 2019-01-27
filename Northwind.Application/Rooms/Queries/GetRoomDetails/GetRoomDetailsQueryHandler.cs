@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
@@ -8,7 +9,7 @@ namespace Northwind.Application.Rooms.Queries.GetRoomDetails
     {
         public Task<RoomDetailsViewModel> Handle(GetRoomDetailsQuery request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

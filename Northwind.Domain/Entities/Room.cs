@@ -13,6 +13,6 @@ namespace Northwind.Domain.Entities
         public int Id { get; set; }
         public int Number { get; set; }
         
-        public ICollection<Calendar> Calendar { get; private set; } /* BookedTime  SinceTime  UntilTime */
+        public ICollection<Calendar> Calendar { get; private set; }
     }
 }

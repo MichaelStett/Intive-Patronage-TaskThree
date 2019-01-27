@@ -20,15 +20,15 @@ namespace Northwind.Application.Rooms.Commands.UpdateRoom
 
         public async Task<Unit> Handle(UpdateRoomCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Rooms.FindAsync(request.RoomID);
+            var entity = await _context.Rooms.FindAsync(request.Id);
 
             if (entity == null)
             {
-                throw new NotFoundException(nameof(Room), request.RoomID);
+                throw new NotFoundException(nameof(Room), request.Id);
             }
             
-            entity.Id = request.RoomID;
-            entity.Number = request.RoomNumber;
+            entity.Id = request.Id;
+            entity.Number = request.Number;
             
             foreach(var date in request.Calendar)
             {
@@ -46,7 +46,7 @@ namespace Northwind.Application.Rooms.Commands.UpdateRoom
 
             //Mail
             string subject = "Update Command Used";
-            string body = $"Updated room on Id: {request.RoomID}";
+            string body = $"Updated room on Id: {request.Id}";
             Mail.SendMail(subject, body);
 
             return Unit.Value;

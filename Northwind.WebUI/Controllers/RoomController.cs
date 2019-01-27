@@ -23,16 +23,16 @@ namespace Northwind.WebUI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomDetailsViewModel>> Get(int id)
         {
-            return Ok(await Mediator.Send(new GetRoomDetailsQuery { RoomID = id }));
+            return Ok(await Mediator.Send(new GetRoomDetailsQuery { Id = id }));
         }
 
         // POST: api/rooms
         [HttpPost]
         public async Task<ActionResult<int>> Create([FromBody] CreateRoomCommand command)
         {
-            var RoomID = await Mediator.Send(command);
+            var roomId = await Mediator.Send(command);
 
-            return Ok(RoomID);
+            return Ok(roomId);
         }
 
         // PUT: api/rooms/5
@@ -47,7 +47,7 @@ namespace Northwind.WebUI.Controllers
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> Delete(int id)
         {
-            await Mediator.Send(new DeleteRoomCommand { RoomID = id });
+            await Mediator.Send(new DeleteRoomCommand { Id = id });
 
             return NoContent();
         }
